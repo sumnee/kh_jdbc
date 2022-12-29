@@ -9,20 +9,50 @@ public class StudentView {
 	public void showAll(List<Student> students) {
 		System.out.println("=== 학생 전체 목록 조회 ===");
 		for(Student sOne : students) {
-		System.out.print("아이디 : " + sOne.getStudentId());
-		System.out.print(", 이름 : " + sOne.getStudentName());
-		System.out.print(", 비밀번호 : " + sOne.getStudentPwd());
-		System.out.print(", 성별 : " + sOne.getGender());
-		System.out.print(", 나이 : " + sOne.getAge());
-		System.out.print(", 이메일 : " + sOne.getEmail());
-		System.out.print(", 전화번호 : " + sOne.getPhone());
-		System.out.print(", 주소 : " + sOne.getAddress());
-		System.out.print(", 취미 : " + sOne.getHobby());
-		System.out.println(", 가입날짜 : " + sOne.getEnrollDate());
-		System.out.println();
+			System.out.print("아이디 : " + sOne.getStudentId());
+			System.out.print(", 이름 : " + sOne.getStudentName());
+			System.out.print(", 비밀번호 : " + sOne.getStudentPwd());
+			System.out.print(", 성별 : " + sOne.getGender());
+			System.out.print(", 나이 : " + sOne.getAge());
+			System.out.print(", 이메일 : " + sOne.getEmail());
+			System.out.print(", 전화번호 : " + sOne.getPhone());
+			System.out.print(", 주소 : " + sOne.getAddress());
+			System.out.print(", 취미 : " + sOne.getHobby());
+			System.out.println(", 가입날짜 : " + sOne.getEnrollDate());
+			System.out.println();
 		
 		}
 	}
+	
+	public void showOne(Student student) {
+		System.out.print("아이디 : " + student.getStudentId());
+		System.out.print(", 이름 : " + student.getStudentName());
+		System.out.print(", 비밀번호 : " + student.getStudentPwd());
+		System.out.print(", 성별 : " + student.getGender());
+		System.out.print(", 나이 : " + student.getAge());
+		System.out.print(", 이메일 : " + student.getEmail());
+		System.out.print(", 전화번호 : " + student.getPhone());
+		System.out.print(", 주소 : " + student.getAddress());
+		System.out.print(", 취미 : " + student.getHobby());
+		System.out.println(", 가입날짜 : " + student.getEnrollDate());
+	}
+	
+	
+	public String inputStudentId(String message) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println(message + "할 아이디 입력 :");
+		String studentId = sc.next();
+		return studentId;
+	}
+	
+	
+	public String inputStudentName(String message) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println(message + "할 이름 입력 :");
+		String studentName = sc.next();
+		return studentName;
+	}
+	
 	
 	public Student inputStudent() {
 		Scanner sc = new Scanner(System.in);
@@ -62,9 +92,40 @@ public class StudentView {
 		//Student student = new Student(studentId,studentName .....); 이거
 		
 	}
+	
+	public Student modifyStudent(Student student) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("수정할 비밀번호 입력 : ");
+		String studentPwd = sc.next();
+		System.out.print("수정할 이메일 입력 : ");
+		String email = sc.next();
+		System.out.print("수정할 전화번호 입력 : ");
+		String phone = sc.next();
+		System.out.print("수정할 주소 입력 : ");
+		sc.nextLine();
+		String address = sc.nextLine();
+		System.out.print("수정할 취미 입력 : ");
+		String hobby = sc.next();
+		
+		student.setStudentPwd(studentPwd);
+		student.setEmail(email);
+		student.setPhone(phone);
+		student.setAddress(address);
+		student.setHobby(hobby);
+		
+		return student;
+	}
 
 	public int mainMenu() {
 		Scanner sc = new Scanner(System.in);
+		System.out.println("=== === 학생관리 프로그램 === ===");
+		System.out.println("1. 학생 전체 보기");
+		System.out.println("2. 학생 아이디로 조회");
+		System.out.println("3. 학생 이름으로 조회");
+		System.out.println("4. 학생 가입");
+		System.out.println("5. 학생 정보 수정");
+		System.out.println("6. 학생 탈퇴");
+		System.out.println("0. 프로그램 종료");
 		System.out.println("메뉴 선택 : ");
 		int select = sc.nextInt();		
 		return select;

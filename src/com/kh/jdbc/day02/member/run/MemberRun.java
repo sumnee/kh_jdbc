@@ -12,10 +12,8 @@ public class MemberRun {
 		MemberView mView = new MemberView();
 		MemberController mCon = new MemberController();
 		Member member = null;
-		List<Member> mList =null;
-		String memberId = "";
-		String memberName = "";
 		int result = 0;
+		String memberId = "";
 		
 		Exit : 
 		while(true) {
@@ -23,25 +21,34 @@ public class MemberRun {
 			switch(choice) {
 			case 1 :
 				//전체조회
-				mList = mCon.printAll();
-				if(!mList.isEmpty()) {
-					mView.showAll(mList);
-				} else {
-					mView.displayError("데이터가 존재하지 않습니다.");
-				}
+				List<Member> mList = mCon.printAll();
+				mView.showAll(mList);
 				break;
 				
 			case 2 :
 				//아이디 조회
-				
+				memberId = mView.inputMemberId("검색");
+				member = mCon.printOneById(memberId);
+				if(member != null) {
+					mView.showOne(member);
+				} else {
+					mView.displayError("일치하는 데이터가 없습니다.");
+				}
 				break;
+				
 			case 3 :
 				//이름 조회
-				
+			
 				break;
 			case 4 :
 				//가입
-				
+				member = mView.inputMember();
+				result = mCon.registerMember(member);
+				if(result > 0) {
+					mView.displaySuccess("회원가입 완료!");
+				} else {
+					mView.displayError("회원가입 실패... ");
+				}
 				break;
 			case 5 :
 				//수정
@@ -49,7 +56,24 @@ public class MemberRun {
 				break;
 			case 6 :
 				//탈퇴
+				memberId = mView.inputMemberId("삭제");
+				result = mCon.removeMember(memberId);
+				if(result > 0) {
+					mView.displaySuccess("회원 탈퇴 성공");
+				} else {
+					mView.displayError("회원 탈퇴 실패");
+				}
+			
 				
+				break;
+			case 7 :
+				member = mView.inputLoginInfo();
+				result = mCon.checkInfo(member);
+				if(result > 0) {
+					mView.displaySuccess("로그인 성공! 접속 완료");
+				} else {
+					mView.displayError("로그인 실패. 아이디와 비밀번호를 다시 확인하세요.");
+				}
 				break;
 			case 0 :
 				mView.printMessage("프로그램을 종료합니다.");

@@ -16,8 +16,44 @@ public class MemberController {
 		return mList;
 	}
 	
-
+	/**
+	 * 아이디로 조회
+	 * @param memberId
+	 * @return
+	 */
+	public Member printOneById(String memberId) {
+		MemberDao mDao = new MemberDao();
+		Member member = mDao.selectOneById(memberId);
+		return member;
+	}
 	
+	/**
+	 * 로그인
+	 * @param member
+	 * @return
+	 */
+	public int checkInfo(Member member) {
+		MemberDao mDao = new MemberDao();
+		int result = mDao.checkLgin(member);
+		return result;
+	}
+	
+	/**
+	 * 회원 가입
+	 * @param member
+	 */
+	public int registerMember(Member member) {
+		MemberDao mDao = new MemberDao();
+		int result = mDao.insertMember(member);
+		return result;
+	}
+	
+	
+	public int removeMember(String memberId) {
+		MemberDao mDao = new MemberDao();
+		int result = mDao.deleteMember(memberId);
+		return result;
+	}
 	
 	
 	

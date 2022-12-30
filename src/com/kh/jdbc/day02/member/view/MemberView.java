@@ -23,9 +23,9 @@ public class MemberView {
 		return choice;
 		}
 
-	public void showAll(List<Member> members) {
+	public void showAll(List<Member> mList) {
 		System.out.println("=== === 회원 전체 조회 === ===");
-		for(Member mem : members) {
+		for(Member mem : mList) {
 			System.out.print("아이디 : " + mem.getMemberId());
 			System.out.print(", 비밀번호 : " + mem.getMemberPwd());
 			System.out.print(", 이름 : " + mem.getMemberName());
@@ -54,6 +54,19 @@ public class MemberView {
 		System.out.println();
 	}
 	
+	public Member inputLoginInfo() {
+		System.out.println("=== === 로그인 정보 입력 === ===");
+		System.out.print("아이디 : ");
+		String memberId = sc.next();
+		System.out.print("비밀번호 : ");
+		String memberPwd = sc.next();
+		Member member = new Member();
+		member.setMemberId(memberId);
+		member.setMemberPwd(memberPwd);
+		return member;
+		//리턴은 한번, 하나만 가능함 / 아이디비번을 다 보내기 위해 멤버에 넣어서 리턴
+	}
+	
 	public String inputMemberId(String message) {
 		System.out.print(message + "할 아이디 입력 >> ");
 		String memberId = sc.next();
@@ -67,7 +80,7 @@ public class MemberView {
 	}
 	
 	public Member inputMember() {
-		System.out.print("=== 회원가입 ===");
+		System.out.println("=== === 회원가입 === ===");
 		System.out.print("아이디 : ");
 		String memberId = sc.next();
 		System.out.print("비밀번호 : ");
@@ -88,16 +101,8 @@ public class MemberView {
 		System.out.print("취미 : ");
 		String memberHobby = sc.next();
 		
-		Member member = new Member();
-		member.setMemberId(memberId);
-		member.setMemberPwd(memberPwd);
-		member.setMemberName(memberName);
-		member.setMemberGender(memberGender);
-		member.setMemberAge(memberAge);
-		member.setMemberEmail(memberEmail);
-		member.setMemberPhone(memberPhone);
-		member.setMemberAddress(memberAddress);
-		member.setMemberHobby(memberHobby);
+		Member member = new Member(memberId, memberPwd, memberName, memberGender, memberAge
+									, memberEmail, memberPhone, memberAddress, memberHobby);
 		return member;
 	}
 	

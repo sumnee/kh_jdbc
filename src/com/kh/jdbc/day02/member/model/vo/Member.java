@@ -18,7 +18,7 @@ public class Member {
 	public Member () {}
 	
 	public Member (String memberId,String memberPwd,String memberName,String memberGender, int memberAge, 
-			String memberEmail, String memberPhone, String memberAddress, String memberHobby, Timestamp memberDate) {
+			String memberEmail, String memberPhone, String memberAddress, String memberHobby) {
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
@@ -28,7 +28,6 @@ public class Member {
 		this.memberPhone = memberPhone;
 		this.memberAddress = memberAddress;
 		this.memberHobby = memberHobby;
-		this.memberDate = memberDate;
 	}
 
 	@Override

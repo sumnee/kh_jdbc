@@ -58,16 +58,17 @@ public class MemberDao {
 	
 	public Member selectOneById(String memberId) {
 		Member member = null;
-		String sql = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = '"+memberId+"'";
+		String sql = "SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = ?";
 		try {
 			Class.forName(DRIVER_NAME);
 			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			Statement stmt = conn.createStatement();
-			ResultSet rset = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			ResultSet rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				member = new Member();
-				member.setMemberId(rset.getString("MEMBER_ID"));
+				member.setMemberId(rset.getString(1));
 				member.setMemberPwd(rset.getString("MEMBER_PWD"));
 				member.setMemberName(rset.getString("MEMBER_NAME"));
 				member.setMemberGender(rset.getString("MEMBER_GENDER"));
@@ -80,7 +81,7 @@ public class MemberDao {
 			}
 			rset.close();
 			conn.close();
-			stmt.close();
+			pstmt.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

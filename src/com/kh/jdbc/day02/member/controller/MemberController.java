@@ -28,6 +28,17 @@ public class MemberController {
 	}
 	
 	/**
+	 * 이름으로 조회
+	 * @param memberName
+	 * @return
+	 */
+	public List<Member> printAllByName(String memberName) {
+		MemberDao mDao = new MemberDao();
+		List<Member> mList = mDao.selectAllByName(memberName);
+		return mList;
+	}
+	
+	/**
 	 * 로그인
 	 * @param member
 	 * @return
@@ -48,7 +59,21 @@ public class MemberController {
 		return result;
 	}
 	
+	/** 
+	 * 회원 수정
+	 * @param member
+	 */
+	public int modifyMember(Member member) {
+		MemberDao mDao = new MemberDao();
+		int result = mDao.updateMember(member);
+		return result;
+	}
 	
+	/** 
+	 * 회원 탈퇴
+	 * @param memberId
+	 * @return
+	 */
 	public int removeMember(String memberId) {
 		MemberDao mDao = new MemberDao();
 		int result = mDao.deleteMember(memberId);

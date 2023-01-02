@@ -1,9 +1,9 @@
-package com.kh.jdbc.day02.member.view;
+package com.kh.jdbc.day03.member.view;
 
 import java.util.List;
 import java.util.Scanner;
 
-import com.kh.jdbc.day02.member.model.vo.Member;
+import com.kh.jdbc.day03.member.model.vo.Member;
 
 public class MemberView {
 	Scanner sc = new Scanner(System.in);

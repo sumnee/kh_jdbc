@@ -41,17 +41,17 @@ public class MemberRun {
 				}
 				break;
 				
-//			case 3 :
-//				//이름 조회
-//				memberName = mView.inputMemberName("검색");
-//				mList = mCon.printAllByName(memberName);
-//				if(mList.size() > 0) {
-//					mView.showAll(mList);
-//				} else {
-//					mView.displayError("일치하는 데이터가 없습니다.");
-//				}
-//				break;
-//				
+			case 3 :
+				//이름 조회
+				memberName = mView.inputMemberName("검색");
+				mList = mCon.printAllByName(memberName);
+				if(!mList.isEmpty()) {
+					mView.showAll(mList);
+				} else {
+					mView.displayError("일치하는 데이터가 없습니다.");
+				}
+				break;
+			
 			case 4 :
 				//가입
 				member = mView.inputMember();
@@ -80,16 +80,16 @@ public class MemberRun {
 				}		
 				break;
 				
-//			case 6 :
-//				//탈퇴
-//				memberId = mView.inputMemberId("삭제");
-//				result = mCon.removeMember(memberId);
-//				if(result > 0) {
-//					mView.displaySuccess("회원 탈퇴 성공");
-//				} else {
-//					mView.displayError("회원 탈퇴 실패");
-//				}
-//				break;
+			case 6 :
+				//탈퇴
+				memberId = mView.inputMemberId("삭제");
+				result = mCon.removeMember(memberId);
+				if(result > 0) {
+					mView.displaySuccess("회원 탈퇴 성공");
+				} else {
+					mView.displayError("회원 탈퇴 실패");
+				}
+				break;
 				
 //			case 7 :
 //				member = mView.inputLoginInfo();
@@ -100,6 +100,7 @@ public class MemberRun {
 //					mView.displayError("로그인 실패. 아이디와 비밀번호를 다시 확인하세요.");
 //				}
 //				break;
+				
 			case 0 :
 				mView.printMessage("프로그램을 종료합니다.");
 				break Exit;

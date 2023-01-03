@@ -14,52 +14,89 @@ public class MemberService {
 	Member member = null;
 	
 	public MemberService() {
-		jTemp = JDBCTemplate.getDriverLoad();
-		mDao = new MemberDao();
+		mDao = new MemberDao(); 	//생략하지 말기
 	}
 	
+	/**
+	 * 회원 전체보기
+	 * @return
+	 */
 	public List<Member> selectAll() {
 		List<Member> mList = null;
-//		JDBCTemplate jTemp = JDBCTemplate.getDriverLoad();
-		Connection conn = jTemp.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		mList = mDao.selectAll(conn);
-		jTemp.close(conn);
 		return mList;
 	}
 	
+	/**
+	 * 아이디로 조회
+	 * @param memberId
+	 * @return Member
+	 */
 	public Member selectOneById(String memberId) {
-		Connection conn = jTemp.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		Member member = mDao.selectOneById(conn, memberId);
-		jTemp.close(conn);
-		return member;
-		
+		return member;	
+	}
+	
+	/**
+	 * 이름으로 조회
+	 * @param memberName
+	 * @return List<Member>
+	 */
+	public List<Member> selectAllByName(String memberName) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Member> mList = mDao.selectAllByName(conn, memberName);
+		return mList;
 	}
 
+	/**
+	 * 회원 등록
+	 * @param member
+	 * @return 
+	 */
 	public int insertMember(Member member) {
-//		JDBCTemplate jTemp = JDBCTemplate.getDriverLoad();
-		Connection conn = jTemp.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		int result = mDao.insertMember(conn, member);
 		if(result > 0) {
-			jTemp.commit(conn);
+			JDBCTemplate.commit(conn);
 		} else {
-			jTemp.rollback(conn);
+			JDBCTemplate.rollback(conn);
 		}
-		jTemp.close(conn);
 		return result;
 	}
 	
+	/**
+	 * 회원정보 수정
+	 * @param member
+	 * @return
+	 */
 	public int updateMember(Member member) {
-		Connection conn = jTemp.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		int result = mDao.insertMember(conn, member);
 		if(result > 0) {
-			jTemp.commit(conn);
+			JDBCTemplate.commit(conn);
 		} else {
-			jTemp.rollback(conn);
+			JDBCTemplate.rollback(conn);
 		}
-		jTemp.close(conn);
 		return result;
 	}
 	
+	/**
+	 * 회원 탈퇴
+	 * @param memberId
+	 * @return
+	 */
+	public int deleteMember(String memberId) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = mDao.deleteMember(conn, memberId);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
 	
 	
 	
